@@ -53,6 +53,7 @@ export class BumblorArabicConverter{
     }
 
 
+
     bumblor2arabic(bumblor: string): number {
         bumblor = bumblor.toLowerCase();
         if(this.dlv(bumblor) && this.mcxi(bumblor) && this.notIncluded(bumblor) && this.spaces(bumblor) && this.outOfOrder(bumblor)){
