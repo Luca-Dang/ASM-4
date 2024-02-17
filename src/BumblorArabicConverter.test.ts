@@ -87,7 +87,6 @@ test('Traling Space', () => {
     expect(converter.bumblor2arabic(input)).toBe(Error('Malformed Number'));
 })
 
-
 test('FLoating point', () => {
     const input = 1.1;
     const BumblorArabicConverter  = new BumblorArabicConverter();
