@@ -52,8 +52,6 @@ export class BumblorArabicConverter{
         return(!bumblor.includes(" "));
     }
 
-
-
     bumblor2arabic(bumblor: string): number {
         bumblor = bumblor.toLowerCase();
         if(this.dlv(bumblor) && this.mcxi(bumblor) && this.notIncluded(bumblor) && this.spaces(bumblor) && this.outOfOrder(bumblor)){
@@ -76,8 +74,8 @@ export class BumblorArabicConverter{
 
         return(1>=arabic && arabic<=4999);
     }
-    // arabic2bumblor(arabic: number): string {
-    //
-    // }
+    arabic2bumblor(arabic: number): string {
+
+    }
     
 }

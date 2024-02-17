@@ -30,61 +30,61 @@ test('D L V Appear more than once', () => {
 test('M C X I Appear more than 4 times', () => {
     const input = 'MMDDCCCCC';
     const converter: BumblorArabicConverter = new BumblorArabicConverter();
-    expect(() => converter.bumblor2arabic(input)).toBe(Error('Malformed Number'));
+    expect(() => converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
 })
 
 test('Out of Order 1', () => {
     const input = 'MMMCM';
     const converter: BumblorArabicConverter = new BumblorArabicConverter();
-    expect( () => converter.bumblor2arabic(input)).toBe(Error('Malformed Number'));
+    expect( () => converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
 })
 
 test('Out of Order 2', () => {
     const input = 'IVXCDM';
     const converter: BumblorArabicConverter = new BumblorArabicConverter();
-    expect( () => converter.bumblor2arabic(input)).toBe(Error('Malformed Number'));
+    expect( () => converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
 })
 
 test('Out of Order 3', () => {
     const input = 'MMMMDCCIX';
     const converter: BumblorArabicConverter = new BumblorArabicConverter();
-    expect( () => converter.bumblor2arabic(input)).toBe(Error('Malformed Number'));
+    expect( () => converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
 })
 
 test('Not Included Syntax Upper', () => {
     const input = 'MMMMDCCK';
     const converter: BumblorArabicConverter = new BumblorArabicConverter();
-    expect(() => converter.bumblor2arabic(input)).toBe(Error('Malformed Number'));
+    expect(() => converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
 })
 
 test('Not Included Syntax Lower', () => {
     const input = 'MMMMDCCk';
     const converter: BumblorArabicConverter = new BumblorArabicConverter();
-    expect(() => converter.bumblor2arabic(input)).toBe(Error('Malformed Number'));
+    expect(() => converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
 })
 
 test('Out of Bounds Smaller Than 1 (empty string)', () => {
     const input = '';
     const converter: BumblorArabicConverter = new BumblorArabicConverter();
-    expect(() => converter.bumblor2arabic(input)).toBe(Error('Malformed Number'));
+    expect(() => converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
 })
 
 test('Leading Space', () => {
     const input = ' MMDDCCCCC';
     const converter: BumblorArabicConverter  = new BumblorArabicConverter();
-    expect(() => converter.bumblor2arabic(input)).toBe(Error('Malformed Number'));
+    expect(() => converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
 })
 
 test('Middle Space', () => {
     const input = 'MMDDC CCCC';
     const converter: BumblorArabicConverter = new BumblorArabicConverter();
-    expect(() =>  converter.bumblor2arabic(input)).toBe(Error('Malformed Number'));
+    expect(() =>  converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
 })
 
 test('Traling Space', () => {
     const input = 'MMDDCCCCC ';
     const converter: BumblorArabicConverter = new BumblorArabicConverter();
-    expect(converter.bumblor2arabic(input)).toBe(Error('Malformed Number'));
+    expect( () => converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
 })
 
 
