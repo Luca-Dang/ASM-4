@@ -84,22 +84,15 @@ export class BumblorArabicConverter{
         }
         else{
             let total = '';
-            const conversions: [string, number][] = [
-                ["m", 1000],
-                ["d", 500],
-                ["c", 100],
-                ["l", 50],
-                ["x", 10],
-                ["v", 5],
-                ["i", 1],
-            ];
-            for (const [letter, value] of conversions) {
-                while (arabic >= value) {
-                    total += letter;
-                    arabic -= value;
+            const convertor: IterableIterator<[string,number]> = this.map.entries();
+            for(const entry of convertor){
+                console.log(entry);
+                while (arabic >= entry[1]) {
+                    total += entry[0];
+                    arabic -= entry[1];
                 }
-            }
-            return total;
         }
+            return total;
     }
+}
 }
