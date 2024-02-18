@@ -31,7 +31,6 @@ export class BumblorArabicConverter{
     outOfOrder(bumblor: string){
         for(let i=0; i<(bumblor.length-1); i++){
             if(this.map.get(bumblor[i])! < this.map.get(bumblor[i+1])!){
-                console.log(this.map.get(bumblor[i]), this.map.get(bumblor[i+1]));
                 return false;
             }
         }
@@ -48,13 +47,17 @@ export class BumblorArabicConverter{
     }
 
 
-        spaces(bumblor: string){
+    spaces(bumblor: string){
         return(!bumblor.includes(" "));
+    }
+
+    empty(bumblor: string){
+        return(!(bumblor==''));
     }
 
     bumblor2arabic(bumblor: string): number {
         bumblor = bumblor.toLowerCase();
-        if(this.dlv(bumblor) && this.mcxi(bumblor) && this.notIncluded(bumblor) && this.spaces(bumblor) && this.outOfOrder(bumblor)){
+        if(this.dlv(bumblor) && this.mcxi(bumblor) && this.notIncluded(bumblor) && this.spaces(bumblor)  && this.empty(bumblor) && this.outOfOrder(bumblor)){
             let total = 0;
             for(let i=0; i<bumblor.length; i++){
                 total += this.map.get(bumblor[i])!;
@@ -71,11 +74,32 @@ export class BumblorArabicConverter{
     }
 
     outOfBounds(arabic: number){
-
-        return(1>=arabic && arabic<=4999);
+        return(1<=arabic && arabic<=4999);
     }
     arabic2bumblor(arabic: number): string {
-
+        if(!this.floatPoint(arabic)){
+            throw Error("Malformed Number")
+        }else if(!this.outOfBounds(arabic)){
+            throw Error("Out of Range")
+        }
+        else{
+            let total = '';
+            const conversions: [string, number][] = [
+                ["m", 1000],
+                ["d", 500],
+                ["c", 100],
+                ["l", 50],
+                ["x", 10],
+                ["v", 5],
+                ["i", 1],
+            ];
+            for (const [letter, value] of conversions) {
+                while (arabic >= value) {
+                    total += letter;
+                    arabic -= value;
+                }
+            }
+            return total;
+        }
     }
-    
 }

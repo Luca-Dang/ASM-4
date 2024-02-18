@@ -5,7 +5,6 @@ import {BumblorArabicConverter} from "./BumblorArabicConverter.ts";
 test('Correct Input Upper case',() => {
    const input = 'MMMMDCCCCXXXXIIII';
     const converter: BumblorArabicConverter = new BumblorArabicConverter();
-    // console.log(converter.outOfOrder(input.toLowerCase()));
    expect(converter.bumblor2arabic(input)).toBe(4944);
 });
 
@@ -15,11 +14,6 @@ test('Correct Input Lower Case',() => {
     expect(converter.bumblor2arabic(input)).toBe(4944);
 });
 
-// test('D L V Appear more than once', () => {
-//     const input = 'DDX';
-//     const converter: BumblorArabicConverter = new BumblorArabicConverter();
-//     expect(converter.bumblor2arabic(input)).toThrowError('Malformed Number');
-// })
 test('D L V Appear more than once', () => {
     const input = 'DDX';
     const converter = new BumblorArabicConverter();
@@ -81,7 +75,7 @@ test('Middle Space', () => {
     expect(() =>  converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
 })
 
-test('Traling Space', () => {
+test('Trailing Space', () => {
     const input = 'MMDDCCCCC ';
     const converter: BumblorArabicConverter = new BumblorArabicConverter();
     expect( () => converter.bumblor2arabic(input)).toThrowError(Error('Malformed Number'));
@@ -90,20 +84,26 @@ test('Traling Space', () => {
 
 test('FLoating point', () => {
     const input = 1.1;
-    const BumblorArabicConverter  = new BumblorArabicConverter();
-    expect(BumblorArabicConverter.arabic2bumblor(input)).toBe(Error('Malformed Number'));
+    const converter: BumblorArabicConverter = new BumblorArabicConverter();
+    expect( () => converter.arabic2bumblor(input)).toThrowError(Error('Malformed Number'));
 })
 
 test('Out of bounds > 4999', () => {
     const input = 5000;
-    const BumblorArabicConverter  = new BumblorArabicConverter();
-    expect(BumblorArabicConverter.arabic2bumblor(input)).toBe(Error('Out of Range'));
+    const converter: BumblorArabicConverter = new BumblorArabicConverter();
+    expect( () =>converter.arabic2bumblor(input)).toThrowError(Error('Out of Range'));
 })
 
 test('Out of bounds < 1', () => {
     const input = -1;
-    const BumblorArabicConverter  = new BumblorArabicConverter();
-    expect(BumblorArabicConverter.arabic2bumblor(input)).toBe(Error('Out of Range'));
+    const converter: BumblorArabicConverter = new BumblorArabicConverter();
+    expect( () => converter.arabic2bumblor(input)).toThrowError(Error('Out of Range'));
+})
+
+test('Correcct Input for Bumblor -> Arabic', () => {
+    const input = 4944;
+    const converter: BumblorArabicConverter = new BumblorArabicConverter();
+    expect(converter.arabic2bumblor(input)).toBe('MMMMDCCCCXXXXIIII'.toLowerCase());
 })
 
 
