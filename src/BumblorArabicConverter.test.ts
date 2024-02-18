@@ -14,6 +14,18 @@ test('Correct Input Lower Case',() => {
     expect(converter.bumblor2arabic(input)).toBe(4944);
 });
 
+test('Correct Input Lower Case 2',() => {
+    const input = 'III'.toLowerCase();
+    const converter: BumblorArabicConverter = new BumblorArabicConverter();
+    expect(converter.bumblor2arabic(input)).toBe(3);
+});
+
+test('Correct Input Lower Case 3',() => {
+    const input = 'XV'.toLowerCase();
+    const converter: BumblorArabicConverter = new BumblorArabicConverter();
+    expect(converter.bumblor2arabic(input)).toBe(15);
+});
+
 test('D L V Appear more than once', () => {
     const input = 'DDX';
     const converter = new BumblorArabicConverter();
@@ -106,6 +118,10 @@ test('Correcct Input for Bumblor -> Arabic', () => {
     expect(converter.arabic2bumblor(input)).toBe('MMMMDCCCCXXXXIIII'.toLowerCase());
 })
 
+test('a', () => {
+    const text = 'dsds';
+    console.log(text.split('d'))
+})
 
 
 
